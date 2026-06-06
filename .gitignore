@@ -1,0 +1,61 @@
+# ============================
+# Virtual Environment
+# ============================
+.venv/
+venv/
+env/
+
+# ============================
+# Python
+# ============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# ============================
+# Environment Variables 
+# ============================
+.env
+
+# ============================
+# Data Files 
+# ============================
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# ============================
+# Logs 
+# ============================
+logs/*
+!logs/.gitkeep
+
+# ============================
+# Jupyter Notebooks checkpoints
+# ============================
+.ipynb_checkpoints/
+
+# ============================
+# VS Code
+# ============================
+.vscode/
+
+# ============================
+# Mac junk files
+# ============================
+.DS_Store
+Thumbs.db
+
+# ============================
+# Testing & Coverage
+# ============================
+.pytest_cache/
+.coverage
+htmlcov/

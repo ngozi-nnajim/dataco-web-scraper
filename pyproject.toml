@@ -1,0 +1,26 @@
+[project]
+name = "dataco-web-scraper"
+version = "0.1.0"
+description = "Automated web scraping pipeline for DataCo"
+requires-python = ">=3.10"
+
+dependencies = [
+    "requests>=2.34.2,<3.0.0",
+    "beautifulsoup4>=4.14.3,<5.0.0",
+    "lxml>=6.1.1,<7.0.0",
+    "pandas>=3.0.3,<4.0.0",
+    "pyyaml>=6.0.3,<7.0.0",
+    "python-dotenv>=1.2.2,<2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.3,<10.0.0",
+    "ruff>=0.15.16,<1.0.0",
+]
+
+[tool.ruff]
+line-length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
