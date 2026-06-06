@@ -59,7 +59,7 @@ smarter, data-driven decisions.
 
 ## Project Workflow
 
-```
+```text
 Step 1 → Identify target website and categories
 Step 2 → Inspect page structure (HTML tags)
 Step 3 → Scrape raw HTML from target pages
