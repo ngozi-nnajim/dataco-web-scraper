@@ -1,0 +1,20 @@
+# ============================================================
+# DataCo Web Scraper — Configuration
+# ============================================================
+
+scraper:
+  base_url: "https://ukbusinessportal.co.uk"
+  categories_path: "/businesses/"
+  delay_seconds: 3
+  timeout_seconds: 10
+  headers:
+    User-Agent: "DataCo-WebScraper/1.0 (educational project)"
+
+output:
+  raw_directory: "data/raw"
+  processed_directory: "data/processed"
+  filename: "business_listings.csv"
+
+logging:
+  level: "INFO"
+  file: "logs/scraper.log"
