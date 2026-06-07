@@ -242,8 +242,14 @@ logging:
 
 ## Data Output
 
-Processed data is saved to `data/processed/business_listings.csv`
-with the following columns:
+The pipeline produces two output files in `data/processed/`:
+
+| File | Format | Intended for |
+|---|---|---|
+| `business_listings.csv` | CSV | Technical users, databases, further processing |
+| `business_listings.xlsx` | Excel | Non-technical business users |
+
+Both files contain the following columns:
 
 | Column | Description | Empty value |
 |---|---|---|
@@ -255,8 +261,12 @@ with the following columns:
 | `website` | Business website URL | `Not Listed` |
 | `business_url` | Link to full business page on UK Business Portal | — |
 
-> Missing values appear as `"Not Listed"` — indicating the business
-> exists but has not published that information on the portal.
+> Phone numbers in the Excel file are explicitly formatted as
+> text — leading zeros are preserved when the file is opened
+> directly in Excel.
+>
+> Missing values appear as `"Not Listed"` — indicating the
+> business exists but has not published that information.
 
 ---
 

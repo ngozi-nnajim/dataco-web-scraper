@@ -41,7 +41,7 @@ extract:
 ## Run transformation only — loads checkpoint from data/raw/
 transform:
 	$(PYTHON) -m src.dataco_web_scraper.pipeline transform
-	@echo "✅ Transformation complete. Output saved to data/processed/"
+	@echo "✅ Transformation complete. CSV and Excel saved to data/processed/"
 
 # ── Testing ──────────────────────────────────────────────────
 
@@ -82,7 +82,7 @@ help:
 	@echo "  make install     → Set up the project environment"
 	@echo "  make run         → Run the full pipeline"
 	@echo "  make extract     → Run extraction only"
-	@echo "  make transform   → Run transformation only"
+	@echo "  make transform   → Run transformation only (CSV + Excel output)"
 	@echo "  make test        → Run all tests"
 	@echo "  make lint        → Check code quality"
 	@echo "  make format      → Auto-format all code"

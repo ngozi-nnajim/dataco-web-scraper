@@ -203,3 +203,54 @@ def save_to_csv(df: pd.DataFrame, config: dict) -> str:
     logger.info("Total records saved: %d", len(df))
 
     return str(output_path)
+
+
+def save_to_excel(df: pd.DataFrame, config: dict) -> str:
+    """
+    Save the cleaned DataFrame to an Excel (.xlsx) file.
+
+    The phone_number column is explicitly formatted as text
+    using Excel's '@' format code — this prevents Excel from
+    treating numeric-looking values as numbers and stripping
+    leading zeros when the file is opened directly in Excel.
+
+    This output is intended for non-technical business users
+    who open files directly in Excel.
+
+    Args:
+        df:     Cleaned pandas DataFrame.
+        config: Project configuration dictionary.
+
+    Returns:
+        The full path of the saved Excel file as a string.
+    """
+    output_dir = Path(config["output"]["processed_directory"])
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Build Excel filename from the CSV filename in config
+    csv_filename   = config["output"]["filename"]
+    excel_filename = csv_filename.replace(".csv", ".xlsx")
+    output_path    = output_dir / excel_filename
+
+    # Write using openpyxl engine so we can directly access
+    # the worksheet and set column formatting
+    with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
+        df.to_excel(writer, index=False, sheet_name="Business Listings")
+
+        worksheet = writer.sheets["Business Listings"]
+
+        # Find the phone_number column position (openpyxl is 1-based)
+        phone_col_idx = df.columns.get_loc("phone_number") + 1
+
+        # Apply Excel text format "@" to every phone cell
+        # Skip row 1 which is the header
+        # This tells Excel: display exactly as typed, never convert
+        for row in range(2, len(df) + 2):
+            cell = worksheet.cell(row=row, column=phone_col_idx)
+            cell.number_format = "@"
+            cell.value = str(cell.value) if cell.value else ""
+
+    logger.info("Excel file saved to: %s", output_path)
+    logger.info("Total records saved: %d", len(df))
+
+    return str(output_path)

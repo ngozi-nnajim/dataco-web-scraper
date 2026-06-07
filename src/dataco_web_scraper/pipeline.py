@@ -22,7 +22,7 @@ from dataco_web_scraper.parser import (
     parse_business_cards,
     parse_business_address,
 )
-from dataco_web_scraper.transformer import transform, save_to_csv
+from dataco_web_scraper.transformer import transform, save_to_csv, save_to_excel
 
 logger = logging.getLogger(__name__)
 
@@ -165,11 +165,14 @@ def run_transformation(config: dict) -> None:
         return
 
     # ── Step 7: Save ─────────────────────────────────────────
-    logger.info("Step 7: Saving to CSV...")
-    output_path = save_to_csv(df, config)
+    logger.info("Step 7: Saving outputs...")
+    csv_path   = save_to_csv(df, config)
+    excel_path = save_to_excel(df, config)
 
     logger.info("=" * 60)
-    logger.info("Transformation complete. Output: %s", output_path)
+    logger.info("Transformation complete.")
+    logger.info("CSV output:    %s", csv_path)
+    logger.info("Excel output:  %s", excel_path)
     logger.info("Total records: %d", len(df))
     logger.info("=" * 60)
 
@@ -202,11 +205,13 @@ def run(mode: str = "full") -> None:
     elif mode == "full":
         all_records = run_extraction(config)
         if all_records:
-            config_for_transform = config
             df = transform(all_records)
             if not df.empty:
-                output_path = save_to_csv(df, config_for_transform)
-                logger.info("Pipeline complete. Output: %s", output_path)
+                csv_path   = save_to_csv(df, config)
+                excel_path = save_to_excel(df, config)
+                logger.info("Pipeline complete.")
+                logger.info("CSV output:    %s", csv_path)
+                logger.info("Excel output:  %s", excel_path)
                 logger.info("Total records: %d", len(df))
     else:
         logger.error(
