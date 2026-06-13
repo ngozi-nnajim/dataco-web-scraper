@@ -3,14 +3,6 @@ name = "dataco-web-scraper"
 version = "0.1.0"
 description = "Automated web scraping pipeline for DataCo"
 requires-python = ">=3.10"
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
 dependencies = [
     "requests>=2.34.2,<3.0.0",
     "beautifulsoup4>=4.14.3,<5.0.0",
@@ -26,6 +18,13 @@ dev = [
     "pytest>=9.0.3,<10.0.0",
     "ruff>=0.15.16,<1.0.0",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
 [tool.ruff]
 line-length = 88
