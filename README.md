@@ -1,3 +1,5 @@
+![CI](https://github.com/ngozi-nnajim/dataco-web-scraper/actions/workflows/ci.yml/badge.svg)
+
 # DataCo Web Scraper 🌐
 
 > Automated web scraping pipeline for collecting and structuring 
