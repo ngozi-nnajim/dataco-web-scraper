@@ -72,6 +72,28 @@ clean:
 	find . -type d -name "*.egg-info" -exec rm -rf {} +
 	@echo "✅ Project cleaned."
 
+# ── Docker ───────────────────────────────────────────────────
+
+## Build the Docker image
+docker-build:
+	docker-compose build
+	@echo "✅ Docker image built."
+
+## Run the full pipeline in Docker
+docker-run:
+	docker-compose run --rm scraper full
+	@echo "✅ Docker pipeline complete."
+
+## Run extraction only in Docker
+docker-extract:
+	docker-compose run --rm scraper extract
+	@echo "✅ Docker extraction complete."
+
+## Run transformation only in Docker
+docker-transform:
+	docker-compose run --rm scraper transform
+	@echo "✅ Docker transformation complete."
+
 # ── Help ─────────────────────────────────────────────────────
 
 ## Show all available commands
@@ -87,6 +109,10 @@ help:
 	@echo "  make lint        → Check code quality"
 	@echo "  make format      → Auto-format all code"
 	@echo "  make clean       → Remove temporary files"
+	@echo "  make docker-build     → Build the Docker image"
+	@echo "  make docker-run       → Run full pipeline in Docker"
+	@echo "  make docker-extract   → Run extraction only in Docker"
+	@echo "  make docker-transform → Run transformation only in Docker"
 	@echo ""
 
-.PHONY: install run extract transform test lint format clean help
+.PHONY: install run extract transform test lint format clean docker-build docker-run docker-extract docker-transform help

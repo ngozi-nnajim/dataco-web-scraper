@@ -171,6 +171,35 @@ make test
 
 ---
 
+## Running With Docker
+
+Docker allows you to run the scraper in a fully isolated
+environment without installing Python or any dependencies
+on your machine.
+
+**Prerequisites:** [Install Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+**Step 1:** Build the image:
+```bash
+make docker-build
+```
+
+**Step 2:** Run the pipeline:
+```bash
+make docker-run        # full pipeline
+make docker-extract    # extraction only
+make docker-transform  # transformation only
+```
+
+Output files appear in `data/processed/` on your machine
+automatically via volume mounting.
+
+> The first build takes a few minutes as Docker downloads
+> the base image and installs dependencies. Subsequent
+> builds are much faster due to layer caching.
+
+---
+
 ## Running the Scraper
 
 The pipeline supports three run modes:

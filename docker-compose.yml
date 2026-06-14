@@ -1,0 +1,40 @@
+# ============================================================
+# DataCo Web Scraper — Docker Compose
+# ============================================================
+# Defines how to run the scraper container.
+#
+# Commands:
+#   docker-compose build              → build the image
+#   docker-compose run scraper full   → run full pipeline
+#   docker-compose run scraper extract    → extraction only
+#   docker-compose run scraper transform  → transform only
+# ============================================================
+
+services:
+  scraper:
+    # Build the image from our Dockerfile
+    build: .
+
+    # Name the container for easy identification
+    container_name: dataco-web-scraper
+
+    # ── Volume mounts ───────────────────────────────────────
+    # Volumes connect folders on your Mac to folders inside
+    # the container. Data written inside the container
+    # appears on your Mac automatically — and vice versa.
+    #
+    # Format: ./local/path:/container/path
+    volumes:
+      - ./data:/app/data       # scraped data appears on your Mac
+      - ./logs:/app/logs       # logs appear on your Mac
+
+    # ── Environment variables ───────────────────────────────
+    # Load from .env file if it exists
+    env_file:
+      - path: .env
+        required: false        # don't fail if .env doesn't exist
+
+    # ── Restart policy ──────────────────────────────────────
+    # "no" means don't restart automatically — appropriate
+    # for a batch pipeline that runs and exits
+    restart: "no"

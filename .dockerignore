@@ -1,0 +1,41 @@
+# ============================================================
+# DataCo Web Scraper — Docker Ignore
+# ============================================================
+
+# Virtual environment — Docker builds its own
+.venv/
+venv/
+env/
+
+# Data files — mounted as volumes at runtime
+data/
+logs/
+
+# Git history — not needed inside container
+.git/
+.github/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Tests — not needed in production image
+tests/
+
+# Notebooks — not needed in production image
+notebooks/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+# Secrets
+.env
